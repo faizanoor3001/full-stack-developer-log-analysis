@@ -79,4 +79,4 @@ by viewStatusAll.time;
 ```
 
 
-
+NOTE: The project description part has been taken up from the Udacity's Site , where we have defined what needs to be done in this project. 

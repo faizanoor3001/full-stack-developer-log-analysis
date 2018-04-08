@@ -14,28 +14,38 @@ In this project, you'll be using a PostgreSQL database. If you'd like to know a 
 Here are some parts that may be particularly useful to refer to:
 
 
-[The select statement](https://www.postgresql.org/docs/9.5/static/sql-select.html)
-[QL string functions](https://www.postgresql.org/docs/9.5/static/functions-string.html)
-[ggregate functions](https://www.postgresql.org/docs/9.5/static/functions-aggregate.html)
+* [The select statement](https://www.postgresql.org/docs/9.5/static/sql-select.html)
+* [SQL string functions](https://www.postgresql.org/docs/9.5/static/functions-string.html)
+* [Aggregate functions](https://www.postgresql.org/docs/9.5/static/functions-aggregate.html)
 
 To start on this project, you'll need database software (provided by a Linux virtual machine) and the data to analyze.
 
 ### Download the data
-Next, download the data here. You will need to unzip [newsdata.sql file](newsdata.sql) file after downloading it. The file inside is called newsdata.sql. 
+Next, download the data here. 
+You will need to unzip [newsdata.sql file](newsdata.sql) file after downloading it. 
+The file inside is called ```newsdata.sql. ```
 
 To build the reporting tool, you'll need to load the site's data into your local database. 
 
-To load the data, cd into directory having psql setup and use the command psql -d news -f newsdata.sql.
+To load the data, cd into directory having psql setup and use the command 
+```
+psql -d news -f newsdata.sql
+```
 Here's what this command does:
 
-psql — the PostgreSQL command line program
--d news — connect to the database named news which has been set up for you
--f newsdata.sql — run the SQL statements in the file newsdata.sql
+* ``` psql ``` — the PostgreSQL command line program
+* ``` -d news ``` connect to the database named news which has been set up for you
+* ``` -f newsdata.sql ``` run the SQL statements in the file ``` newsdata.sql ```
+
 Running this command will connect to your installed database server and execute the SQL commands in the downloaded file, creating tables and populating them with data.
 
 Getting an error?
+
 If this command gives an error message, such as —
+
+```
 psql: FATAL: database "news" does not exist
 psql: could not connect to server: Connection refused
-— this means the database server is not running or is not set up correctly. 
+```
 
+this means the database server is not running or is not set up correctly. 

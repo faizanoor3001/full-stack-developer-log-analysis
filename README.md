@@ -3,59 +3,80 @@
 
 ## [Project_Description](Project_Description.md)
 
-Views Description : 
 
-For the first question , create the below view : 
+## Questions
+1. What are the most popular three articles of all time?
+  Which articles have been accessed the most?
+  Present this information as a sorted list with the most popular article at the top
+2. Who are the most popular article authors of all time?
+  That is, when you sum up all of the articles each author has written, which authors get the most page views?
+  Present this as a sorted list with the most popular author at the top.
+3. On which days did more than 1% of requests lead to errors?
+  The log table includes a column status that indicates the HTTP status code that the news site sent to the user's browser.
 
+## Requirements
+* Python 3.5.3
+* psycopg2
+* Postgresql 9.6
+
+## How to run
+
+* load the data onto the database
+```sql
+psql -d news -f newsdata.sql
+```
+* connect to the database
+```sql
+psql -d news
+```
+* create views
+* python3 LogsAnalysis.py
+
+## Views Description : 
+
+#### For the first question , create the below view : 
+
+```sql
 create view topThreePathViews AS select path , count(*) as num from log group by path order by num desc LIMIT 3 OFFSET 1;
-
-query : 
-select articles.title , topThreePathViews.num as views from articles , topThreePathViews where '/article/'||articles.slug = topThreePathViews.path order by num desc;
-
-For the Second question create below views : 
+```
 
 
+#### For the Second question create below views : 
 
-View 1:
+```sql
 create view view1 AS select path , count(*) as num from log group by path order by num desc;
+```
 
-
-View 2:
+```sql
  create view view2new as select articles.title ,articles.author, view1.num as views from articles , view1 wher
 e '/article/'||articles.slug = view1.path order by num desc;
+```
 
-
-View 3:
-
+```sql
 create view view3 as select sum(views) as mostViewed, view2new.author from view2new group by author order
 by author ;
+```
 
-#need to remove the query from readme.md
-
-final query :
-    
-select authors.name , view3.mostViewed from authors,
-view3 where authors.id = view3.author;
-
-
-Question 3: 
+#### For the third question , create below views : 
 
 All positive and negative status logs: 
 
+```sql
 create view viewStatusAll as select time::date ,  count(*) as status from log group by time::date order by time::date;
-
+```
 All failed status logs: 
 
- create view viewStatusNotFound as select time::date ,  count(*) as status from log where status='404 NOT FOUND' group by time::date order by time::date;
+```sql
+create view viewStatusNotFound as select time::date ,  count(*) as status from log where status='404 NOT FOUND' group by time::date order by time::date;
+```
 
 Error Percentage status :
 
+```sql
 create view errorPercent as select viewStatusAll.time , (100.0 * viewStatusNotFound.status/viewStatusAll.stat
 us ) as percentage from viewStatusAll , viewStatusNotFound where viewStatusAll.time = viewStatusNotFound.time order
 by viewStatusAll.time;
+```
 
-Query :
-
-select time from errorPercent where percentage > 1 order by time desc;
 
 

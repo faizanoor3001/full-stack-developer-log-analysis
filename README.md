@@ -33,6 +33,6 @@ by author ;
 
 final query :
     
-select authors.name , testing4.mostViewed from authors,
-testing4 where authors.id = testing4.author;
+select authors.name , view3.mostViewed from authors,
+view3 where authors.id = view3.author;
 

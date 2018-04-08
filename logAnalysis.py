@@ -1,4 +1,4 @@
-'''python --version 3.6.4'''
+#!/usr/bin/env python3
 
 import psycopg2
 

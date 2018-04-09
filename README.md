@@ -29,7 +29,7 @@ psql -d news -f newsdata.sql
 ```sql
 psql -d news
 ```
-* create views
+* create views from the ViewScripts.sq; file or you can copy the scripts from below in the README.md file.
 * python3 LogsAnalysis.py
 
 ## Views Description : 

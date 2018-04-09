@@ -48,8 +48,7 @@ create view view1 AS select path , count(*) as num from log group by path order 
 ```
 
 ```sql
- create view view2new as select articles.title ,articles.author, view1.num as views from articles , view1 wher
-e '/article/'||articles.slug = view1.path order by num desc;
+ create view view2new as select articles.title ,articles.author, view1.num as views from articles , view1 where '/article/'||articles.slug = view1.path order by num desc;
 ```
 
 ```sql
@@ -73,8 +72,7 @@ create view viewStatusNotFound as select time::date ,  count(*) as status from l
 Error Percentage status :
 
 ```sql
-create view errorPercent as select viewStatusAll.time , (100.0 * viewStatusNotFound.status/viewStatusAll.stat
-us ) as percentage from viewStatusAll , viewStatusNotFound where viewStatusAll.time = viewStatusNotFound.time order
+create view errorPercent as select viewStatusAll.time , (100.0 * viewStatusNotFound.status/viewStatusAll.status) as percentage from viewStatusAll , viewStatusNotFound where viewStatusAll.time = viewStatusNotFound.time order
 by viewStatusAll.time;
 ```
 
